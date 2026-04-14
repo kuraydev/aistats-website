@@ -151,6 +151,20 @@ a:hover { color: #E9D5FF; }
   color: white;
   filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25));
 }
+
+.provider-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.provider-row img {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.28);
+  border: 1px solid rgba(255,255,255,0.08);
+}
 .feature-icon::before {
   content: "";
   position: absolute;
