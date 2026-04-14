@@ -87,27 +87,20 @@ a:hover { color: #E9D5FF; }
 .brand-icon {
   width: 32px;
   height: 32px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  position: relative;
+  border-radius: 8px;
   box-shadow: 0 6px 16px rgba(115, 102, 255, 0.35);
+  object-fit: cover;
+  display: block;
 }
-.brand-icon::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0) 55%);
-  mix-blend-mode: plus-lighter;
-  pointer-events: none;
-}
-.brand-icon::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid rgba(255,255,255,0.22);
-  pointer-events: none;
+
+.hero-app-icon {
+  width: 112px;
+  height: 112px;
+  border-radius: 26px;
+  display: block;
+  margin: 0 auto 20px;
+  box-shadow: 0 24px 60px rgba(115, 102, 255, 0.45), 0 6px 18px rgba(0,0,0,0.4);
+  object-fit: cover;
 }
 
 .feature-icon {
