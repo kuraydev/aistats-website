@@ -25,6 +25,7 @@
       </div>
       <div class="nav-links">
         <a href="#features">Features</a>
+        <a href="#showcase">Tour</a>
         <a href="#privacy">Privacy</a>
         <a href="mailto:kuraydev.io@gmail.com" class="nav-cta">Contact</a>
       </div>
@@ -42,8 +43,8 @@
       <div class="hero-meta">Requires macOS 14 Sonoma or later · Apple Silicon &amp; Intel</div>
     </header>
 
-    <div class="preview reveal" aria-hidden="true">
-      <div class="preview-placeholder">Drop screenshot.png or popover.png here</div>
+    <div class="preview reveal">
+      <img class="preview-img" src="screenshots/dashboard.png" alt="AI Stats dashboard window" onerror="this.outerHTML='&lt;div class=&quot;preview-placeholder&quot;&gt;Drop screenshots/dashboard.png here&lt;/div&gt;'" />
     </div>
 
     <section id="features" class="reveal">
@@ -107,6 +108,67 @@
           </span>
           <h3>100% on-device</h3>
           <p>No backend, no analytics, no telemetry. Your credentials live in the macOS Keychain — never ours.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase" class="showcase">
+      <div class="section-eyebrow reveal">Tour</div>
+      <h2 class="reveal">See it in action.</h2>
+      <p class="section-lead reveal">Every surface — menu bar, widgets, dashboard, settings — is native SwiftUI and built to feel like a first-party macOS app.</p>
+
+      <div class="showcase-row reveal">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Menu bar</div>
+          <h3>Live progress, right next to the clock.</h3>
+          <p>A single progress indicator for the account that matters most. Click it for the full popover with every quota, reset timer, and account status.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/menubar.png" alt="Menu bar popover showing account usage" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/menubar.png&lt;/div&gt;'" />
+        </div>
+      </div>
+
+      <div class="showcase-row reveal reverse">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Dashboard</div>
+          <h3>Deep-dive usage history.</h3>
+          <p>Swift Charts powered line charts per account, range picker from 1 hour to 30 days, and a sidebar that groups accounts into the categories you set.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/dashboard-detail.png" alt="Dashboard showing usage charts for a single account" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/dashboard-detail.png&lt;/div&gt;'" />
+        </div>
+      </div>
+
+      <div class="showcase-row reveal">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Widgets</div>
+          <h3>Desktop &amp; Notification Center.</h3>
+          <p>Small, medium, and large WidgetKit widgets. Pick an account to hero or let it rotate through all of them.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/widgets.png" alt="macOS widgets displaying AI Stats usage" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/widgets.png&lt;/div&gt;'" />
+        </div>
+      </div>
+
+      <div class="showcase-row reveal reverse">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Add account</div>
+          <h3>Sign in once, stay signed in.</h3>
+          <p>Embedded WebView login for Claude, ChatGPT, Codex, Cursor. API key entry for Anthropic, OpenAI, Gemini. Your credentials never leave the Mac.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/add-account.png" alt="Add account wizard" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/add-account.png&lt;/div&gt;'" />
+        </div>
+      </div>
+
+      <div class="showcase-row reveal">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Settings</div>
+          <h3>Tuned to the last pixel.</h3>
+          <p>Notification thresholds, appearance, categories, menu bar style — all themed in the same glossy purple language as the rest of the app.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/settings.png" alt="Settings window" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/settings.png&lt;/div&gt;'" />
         </div>
       </div>
     </section>

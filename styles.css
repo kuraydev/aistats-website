@@ -308,7 +308,8 @@ a:hover { color: #E9D5FF; }
   background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0) 30%);
   pointer-events: none;
 }
-.preview-placeholder {
+.preview-placeholder,
+.media-placeholder {
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   background:
@@ -320,6 +321,92 @@ a:hover { color: #E9D5FF; }
   place-items: center;
   color: var(--text-muted);
   font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}
+.preview-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+
+/* ------------------------------------------------------------------ showcase */
+
+.showcase { padding-top: 32px; }
+
+.showcase-row {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 48px;
+}
+.showcase-row.reverse { grid-template-columns: 1.25fr 1fr; }
+.showcase-row.reverse .showcase-text  { order: 2; }
+.showcase-row.reverse .showcase-media { order: 1; }
+
+.showcase-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-1);
+  margin-bottom: 10px;
+}
+.showcase-text h3 {
+  font-size: clamp(22px, 2.4vw, 28px);
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+.showcase-text p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin: 0;
+  max-width: 520px;
+}
+
+.showcase-media {
+  position: relative;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.showcase-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 30%);
+  pointer-events: none;
+}
+.showcase-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+}
+.showcase-media .media-placeholder {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .showcase-row,
+  .showcase-row.reverse {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .showcase-row.reverse .showcase-text { order: 1; }
+  .showcase-row.reverse .showcase-media { order: 2; }
 }
 
 /* ------------------------------------------------------------------ sections */
