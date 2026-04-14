@@ -94,13 +94,12 @@ a:hover { color: #E9D5FF; }
 }
 
 .hero-app-icon {
-  width: 112px;
-  height: 112px;
-  border-radius: 26px;
+  width: 140px;
+  height: 140px;
   display: block;
   margin: 0 auto 20px;
-  box-shadow: 0 24px 60px rgba(115, 102, 255, 0.45), 0 6px 18px rgba(0,0,0,0.4);
-  object-fit: cover;
+  filter: drop-shadow(0 24px 60px rgba(115, 102, 255, 0.45)) drop-shadow(0 6px 18px rgba(0,0,0,0.4));
+  object-fit: contain;
 }
 
 .feature-icon {
