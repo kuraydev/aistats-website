@@ -79,13 +79,38 @@ a:hover { color: #E9D5FF; }
 }
 
 .nav-links {
-  display: flex;
-  gap: 22px;
-  font-size: 14px;
-  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-size: 13px;
+  font-weight: 500;
 }
-.nav-links a { color: var(--text-secondary); }
-.nav-links a:hover { color: var(--text-primary); }
+.nav-links a {
+  color: var(--text-secondary);
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+.nav-links a:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+.nav-links .nav-cta {
+  color: white;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 6px 16px rgba(115, 102, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.22);
+}
+.nav-links .nav-cta:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 10px 22px rgba(115, 102, 255, 0.45), inset 0 1px 0 rgba(255,255,255,0.28);
+}
 
 /* ------------------------------------------------------------------ icons */
 
@@ -99,25 +124,33 @@ a:hover { color: #E9D5FF; }
 }
 
 .hero-app-icon {
-  width: 140px;
-  height: 140px;
+  width: 128px;
+  height: 128px;
+  border-radius: 28px;
   display: block;
   margin: 0 auto 20px;
-  filter: drop-shadow(0 24px 60px rgba(115, 102, 255, 0.45)) drop-shadow(0 6px 18px rgba(0,0,0,0.4));
-  object-fit: contain;
+  object-fit: cover;
+  box-shadow: 0 24px 60px rgba(115, 102, 255, 0.45), 0 6px 18px rgba(0,0,0,0.4);
 }
 
 .feature-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
   color: white;
-  font-size: 20px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+}
+.feature-icon svg {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 1;
+  color: white;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25));
 }
 .feature-icon::before {
   content: "";
