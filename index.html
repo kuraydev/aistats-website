@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Stats — All your AI usage, in one menu bar</title>
+  <meta name="description" content="AI Stats is a native macOS menu bar app that tracks usage, limits, and spending across Claude, ChatGPT, Codex, Cursor, Gemini, and more — 100% on-device." />
+  <meta name="theme-color" content="#100B1C" />
+
+  <meta property="og:title" content="AI Stats — All your AI usage, in one menu bar" />
+  <meta property="og:description" content="Native macOS app. Track usage, limits, and spending across every AI account you use. 100% on-device." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-brand">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <span>AI Stats</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="privacy.html">Policy</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <span class="hero-eyebrow"><span class="dot"></span>Native macOS · Menu bar</span>
+      <h1>All your AI usage,<br/><span class="grad">in one menu bar.</span></h1>
+      <p>AI Stats tracks quotas, limits, and spending across every AI account you use — Claude, ChatGPT, Codex, Cursor, Anthropic, OpenAI, Gemini — and keeps it all on your Mac.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary" aria-label="Download on the Mac App Store">Coming to the Mac App Store</a>
+        <a href="#features" class="btn btn-ghost">See features</a>
+      </div>
+      <div class="hero-meta">Requires macOS 14 Sonoma or later · Apple Silicon &amp; Intel</div>
+    </header>
+
+    <div class="preview" aria-hidden="true">
+      <div class="preview-placeholder">Drop screenshot.png or popover.png here</div>
+    </div>
+
+    <section id="features">
+      <div class="section-eyebrow">Features</div>
+      <h2>Everything you need, nothing you don't.</h2>
+      <p class="section-lead">AI Stats is built from the ground up for macOS. No dashboards to open, no web app to log in to, no account to create.</p>
+
+      <div class="features">
+        <div class="card">
+          <span class="feature-icon g-sky-blue" aria-hidden="true">◱</span>
+          <h3>At a glance in your menu bar</h3>
+          <p>A live progress indicator for the account that matters most, right next to your clock.</p>
+        </div>
+
+        <div class="card">
+          <span class="feature-icon g-pink-purple" aria-hidden="true">✦</span>
+          <h3>Every major AI service</h3>
+          <p>Claude, ChatGPT, Codex, Cursor, Anthropic API, OpenAI API, Gemini — add as many accounts as you need.</p>
+        </div>
+
+        <div class="card">
+          <span class="feature-icon g-mint-emerald" aria-hidden="true">▦</span>
+          <h3>WidgetKit widgets</h3>
+          <p>Small, medium, and large widgets for your desktop and Notification Center. Always up to date.</p>
+        </div>
+
+        <div class="card">
+          <span class="feature-icon g-amber-orange" aria-hidden="true">!</span>
+          <h3>Smart alerts</h3>
+          <p>Native notifications when you cross 60%, 80%, or 90% of any quota — with configurable thresholds.</p>
+        </div>
+
+        <div class="card">
+          <span class="feature-icon g-pink-magenta" aria-hidden="true">◉</span>
+          <h3>Labels &amp; categories</h3>
+          <p>Organize accounts by Work, Personal, Client — and see totals per category, not just per service.</p>
+        </div>
+
+        <div class="card">
+          <span class="feature-icon g-lilac-indigo" aria-hidden="true">⎈</span>
+          <h3>100% on-device</h3>
+          <p>No backend, no analytics, no telemetry. Your credentials live in the macOS Keychain — never ours.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="privacy-callout">
+        <div>
+          <div class="section-eyebrow" style="margin-bottom:8px;">Privacy</div>
+          <h2>Zero data collection. Ever.</h2>
+          <p>AI Stats doesn't have a server. There's no user account, no cloud sync, no analytics SDK. Every credential stays in your Keychain and every request goes straight from your Mac to the AI provider you chose.</p>
+        </div>
+        <a href="privacy.html" class="btn btn-ghost">Read the privacy policy →</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <div>© <span id="year">2026</span> Coursion. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="mailto:kuraydev.io@gmail.com">Support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
