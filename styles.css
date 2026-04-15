@@ -447,12 +447,15 @@ h2 + .section-lead {
 }
 
 .card {
+  /* No backdrop-filter here: animating transform on a blurred element
+   * recomputes the blur region every frame — the single biggest cause
+   * of jank during the feature reveal wave. The card sits on a dark
+   * backdrop so the glassy look still reads with just the translucent
+   * fill + inner highlight. */
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
   padding: 22px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
 }
@@ -553,84 +556,95 @@ footer {
 .prose strong { color: var(--text-primary); }
 .prose .card { padding: 24px; }
 
-/* ------------------------------------------------------------------ motion */
+/* ------------------------------------------------------------------ motion
+ * Rules of thumb that keep this snappy:
+ * - Animate only `transform` and `opacity` (no box-shadow / background /
+ *   border transitions — those invalidate paint every frame).
+ * - Keep animating elements on their own compositing layer via
+ *   translate3d + will-change *while active*, then clear will-change so
+ *   idle cards don't hold GPU layers forever.
+ * - Durations stay under ~450ms so the stagger wave resolves fast.
+ */
 
 @keyframes hero-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -6px, 0); }
 }
 
 .hero-app-icon {
   animation: hero-float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes hero-fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 .hero > * {
-  animation: hero-fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-fade-up 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero > *:nth-child(1) { animation-delay: 0ms; }
-.hero > *:nth-child(2) { animation-delay: 80ms; }
-.hero > *:nth-child(3) { animation-delay: 160ms; }
-.hero > *:nth-child(4) { animation-delay: 240ms; }
-.hero > *:nth-child(5) { animation-delay: 320ms; }
-.hero > *:nth-child(6) { animation-delay: 400ms; }
+.hero > *:nth-child(2) { animation-delay: 50ms; }
+.hero > *:nth-child(3) { animation-delay: 100ms; }
+.hero > *:nth-child(4) { animation-delay: 150ms; }
+.hero > *:nth-child(5) { animation-delay: 200ms; }
+.hero > *:nth-child(6) { animation-delay: 250ms; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translate3d(0, 16px, 0);
   transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Stagger children when the reveal fires (used on .features grid) */
+/* Stagger children when the reveal fires (used on .features grid).
+ * Short, tight delays so the whole wave completes in ~500ms total. */
 .reveal-stagger > * {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translate3d(0, 14px, 0);
   transition:
-    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.reveal-stagger.is-visible > *        { opacity: 1; transform: translateY(0); }
-.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 40ms; }
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 100ms; }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 220ms; }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 340ms; }
+.reveal-stagger.is-visible > *               { opacity: 1; transform: translate3d(0, 0, 0); }
+.reveal-stagger.is-visible > *:nth-child(1)  { transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2)  { transition-delay: 40ms; }
+.reveal-stagger.is-visible > *:nth-child(3)  { transition-delay: 80ms; }
+.reveal-stagger.is-visible > *:nth-child(4)  { transition-delay: 120ms; }
+.reveal-stagger.is-visible > *:nth-child(5)  { transition-delay: 160ms; }
+.reveal-stagger.is-visible > *:nth-child(6)  { transition-delay: 200ms; }
 
-/* Card hover lift */
+/* Isolate card repaints so hovering one doesn't force siblings to
+ * recomposite their backdrop-filter blur. */
 .card {
-  transition:
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
+  contain: layout paint;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card:hover {
-  transform: translateY(-3px);
+  transform: translate3d(0, -3px, 0);
+}
+/* Hover highlight swaps instantly (no transition) — animating
+ * background / border-color in parallel with transform is the
+ * expensive combo that makes the wave feel laggy. */
+.card:hover {
   border-color: var(--card-border-strong);
   background: var(--card-bg-strong);
-  box-shadow: 0 20px 44px rgba(0,0,0,0.35);
 }
 
 .feature-icon {
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card:hover .feature-icon {
-  transform: translateY(-2px) scale(1.04);
+  transform: translate3d(0, -2px, 0) scale(1.04);
 }
 
-.btn { transition: transform 140ms ease, box-shadow 180ms ease, background 140ms ease, border-color 140ms ease; }
+.btn { transition: transform 120ms ease; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
