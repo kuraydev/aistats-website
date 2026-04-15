@@ -63,17 +63,41 @@
         </div>
       </div>
 
-      <!-- Per-account detail — 2x2 mosaic -->
-      <div class="showcase-block reveal">
-        <div class="showcase-kicker">Account Detail</div>
-        <h3>Charts, limits, and resets — per provider.</h3>
-        <p>Each account gets a page: Swift Charts history, metric cards with progress rings, and the provider's own rate-limit windows broken out.</p>
-        <div class="showcase-grid">
-          <div class="showcase-media"><img src="screenshots/claude-max-dashboard.png" alt="Claude account detail" /></div>
-          <div class="showcase-media"><img src="screenshots/cursor-dashboard.png" alt="Cursor account detail" /></div>
-          <div class="showcase-media"><img src="screenshots/development-dashboard.png" alt="Codex / Development account detail" /></div>
-          <div class="showcase-media"><img src="screenshots/gemini-dashboard.png" alt="Gemini account detail" /></div>
+      <!-- Per-account detail — alternating rows, one per provider -->
+      <div class="showcase-row reveal reverse">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Claude</div>
+          <h3>Charts, limits, and resets.</h3>
+          <p>Every account gets a page with Swift Charts history, metric cards, and the provider's own rate-limit windows broken out.</p>
         </div>
+        <div class="showcase-media"><img src="screenshots/claude-max-dashboard.png" alt="Claude account detail" /></div>
+      </div>
+
+      <div class="showcase-row reveal">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Cursor</div>
+          <h3>Premium, Auto, API — separated.</h3>
+          <p>Cursor's three quota buckets show as their own metric cards so you can tell exactly which one you're about to burn.</p>
+        </div>
+        <div class="showcase-media"><img src="screenshots/cursor-dashboard.png" alt="Cursor account detail" /></div>
+      </div>
+
+      <div class="showcase-row reveal reverse">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Codex</div>
+          <h3>Subscription status at a glance.</h3>
+          <p>Days until renewal, plan tier, and — when OpenAI exposes them — the 5h / Weekly rate-limit windows straight from the backend.</p>
+        </div>
+        <div class="showcase-media"><img src="screenshots/development-dashboard.png" alt="Codex account detail" /></div>
+      </div>
+
+      <div class="showcase-row reveal">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Gemini</div>
+          <h3>Daily requests &amp; tokens.</h3>
+          <p>Tracks your own Gemini API key's usage against the free-tier daily limits — AI Stats validates the key without burning your quota.</p>
+        </div>
+        <div class="showcase-media"><img src="screenshots/gemini-dashboard.png" alt="Gemini account detail" /></div>
       </div>
 
       <!-- Spending — alternating row -->
