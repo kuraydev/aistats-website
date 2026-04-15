@@ -423,26 +423,18 @@ a:hover { color: #E9D5FF; }
   max-width: 520px;
 }
 
+/* No framing card — the screenshot sits directly on the page background
+ * with just a soft drop-shadow. The earlier card treatment made every
+ * image look like it was in a black bezel. */
 .showcase-media {
   position: relative;
-  padding: 12px;
-  border-radius: var(--radius-lg);
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
-  /* No backdrop-filter here: Safari treats the child image as part of a
-   * composited layer and subsamples it, which is why the mosaic looked
-   * blurry even though the source PNGs are sharp when opened directly.
-   * The card sits on a dark gradient so losing the blur isn't visible. */
 }
 .showcase-media img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius-md);
-  border: 1px solid var(--card-border);
-  position: relative;
-  z-index: 1;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
   /* Hint the browser to prefer crisp downscaling. */
   image-rendering: -webkit-optimize-contrast;
   transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -453,17 +445,6 @@ a:hover { color: #E9D5FF; }
 .showcase-media img:active {
   transform: scale(0.97);
   transition-duration: 80ms;
-}
-/* Top gloss highlight sits *behind* the image so it only tints the
- * card's padding, not the screenshot itself. */
-.showcase-media::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 30%);
-  pointer-events: none;
-  z-index: 0;
 }
 .showcase-media .media-placeholder {
   margin: 0;
