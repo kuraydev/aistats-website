@@ -429,18 +429,11 @@ a:hover { color: #E9D5FF; }
   border-radius: var(--radius-lg);
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 24px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
-  overflow: hidden;
-}
-.showcase-media::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 30%);
-  pointer-events: none;
+  /* No backdrop-filter here: Safari treats the child image as part of a
+   * composited layer and subsamples it, which is why the mosaic looked
+   * blurry even though the source PNGs are sharp when opened directly.
+   * The card sits on a dark gradient so losing the blur isn't visible. */
 }
 .showcase-media img {
   display: block;
@@ -448,6 +441,21 @@ a:hover { color: #E9D5FF; }
   height: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--card-border);
+  position: relative;
+  z-index: 1;
+  /* Hint the browser to prefer crisp downscaling. */
+  image-rendering: -webkit-optimize-contrast;
+}
+/* Top gloss highlight sits *behind* the image so it only tints the
+ * card's padding, not the screenshot itself. */
+.showcase-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 30%);
+  pointer-events: none;
+  z-index: 0;
 }
 .showcase-media .media-placeholder {
   margin: 0;
@@ -710,6 +718,54 @@ footer {
 .prose ul { padding-left: 20px; }
 .prose strong { color: var(--text-primary); }
 .prose .card { padding: 24px; }
+
+/* ------------------------------------------------------------------ lightbox */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: rgba(10, 6, 20, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img {
+  max-width: min(92vw, 1600px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+  cursor: zoom-out;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 150ms ease;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.16); }
 
 /* ------------------------------------------------------------------ motion
  * Rules of thumb that keep this snappy:

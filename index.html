@@ -200,6 +200,12 @@
     </footer>
   </div>
 
+  <!-- Lightbox: click any screenshot to zoom -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img alt="" />
+  </div>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -227,6 +233,39 @@
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
       targets.forEach(function(el) { io.observe(el); });
+    })();
+
+    // Lightbox: click a screenshot, get a zoomed-in view. Esc or click
+    // outside the image to close. Uses the `.lightbox-target` opt-in class
+    // so hero/widget images don't all pop open if we don't want them to.
+    (function() {
+      var lb = document.getElementById('lightbox');
+      var lbImg = lb.querySelector('img');
+      var lbClose = lb.querySelector('.lightbox-close');
+      // Any image inside .showcase-media is zoomable.
+      var targets = document.querySelectorAll('.showcase-media img, .hero-shot, .widget-trio .widget');
+      targets.forEach(function(img) {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function() { open(img.src, img.alt); });
+      });
+
+      function open(src, alt) {
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lb.classList.add('is-open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        // Clear src so a second open re-triggers the fade-in.
+        setTimeout(function() { if (!lb.classList.contains('is-open')) lbImg.src = ''; }, 220);
+      }
+      lb.addEventListener('click', function(e) { if (e.target === lb || e.target === lbClose) close(); });
+      lbClose.addEventListener('click', close);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
     })();
   </script>
 </body>
