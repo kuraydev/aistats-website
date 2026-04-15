@@ -194,7 +194,59 @@ a:hover { color: #E9D5FF; }
 
 .hero {
   padding: 72px 0 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+}
+.hero-copy { text-align: left; }
+.hero-copy p { margin: 0 0 28px; max-width: 540px; }
+.hero-copy .hero-app-icon { margin: 0 0 20px; }
+.hero-copy .cta-row { justify-content: flex-start; }
+.hero-copy .hero-meta { text-align: left; }
+
+.hero-visual {
+  position: relative;
+  min-width: 0;
+}
+.hero-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 520px;
+  margin: 0 auto;
+  filter:
+    drop-shadow(0 30px 70px rgba(115, 102, 255, 0.35))
+    drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55));
+}
+.hero-shot-placeholder {
+  aspect-ratio: 3 / 4;
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(400px 240px at 30% 15%, rgba(155,89,182,0.35), transparent 70%),
+    radial-gradient(380px 220px at 85% 20%, rgba(115,102,255,0.25), transparent 70%),
+    linear-gradient(180deg, #1A1230, #0E0918);
+  border: 1px solid var(--card-border);
+  display: grid;
+  place-items: center;
+  padding: 24px;
   text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+  .hero-copy { text-align: center; }
+  .hero-copy .hero-app-icon { margin: 0 auto 20px; }
+  .hero-copy .cta-row { justify-content: center; }
+  .hero-visual { order: 2; }
 }
 
 .hero-eyebrow {
