@@ -603,22 +603,16 @@ footer {
   transform: translate3d(0, 0, 0);
 }
 
-/* Stagger children when the reveal fires (used on .features grid).
- * Short, tight delays so the whole wave completes in ~500ms total. */
-.reveal-stagger > * {
+/* Features grid fades in as a single block — no per-card transform or
+ * stagger. On low-spec machines the per-card wave was visibly janky
+ * because each card composites independently alongside the others.
+ * A single opacity transition on the container is essentially free on
+ * the GPU and still reads as "entering". */
+.reveal-stagger {
   opacity: 0;
-  transform: translate3d(0, 14px, 0);
-  transition:
-    opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 320ms linear;
 }
-.reveal-stagger.is-visible > *               { opacity: 1; transform: translate3d(0, 0, 0); }
-.reveal-stagger.is-visible > *:nth-child(1)  { transition-delay: 0ms; }
-.reveal-stagger.is-visible > *:nth-child(2)  { transition-delay: 40ms; }
-.reveal-stagger.is-visible > *:nth-child(3)  { transition-delay: 80ms; }
-.reveal-stagger.is-visible > *:nth-child(4)  { transition-delay: 120ms; }
-.reveal-stagger.is-visible > *:nth-child(5)  { transition-delay: 160ms; }
-.reveal-stagger.is-visible > *:nth-child(6)  { transition-delay: 200ms; }
+.reveal-stagger.is-visible { opacity: 1; }
 
 /* Isolate card repaints so hovering one doesn't force siblings to
  * recomposite their backdrop-filter blur. */
