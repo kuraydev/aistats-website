@@ -48,9 +48,70 @@
       </div>
     </header>
 
-    <div class="preview reveal">
-      <img class="preview-img" src="screenshots/dashboard.png" alt="AI Stats dashboard window" onerror="this.outerHTML='&lt;div class=&quot;preview-placeholder&quot;&gt;Drop screenshots/dashboard.png here&lt;/div&gt;'" />
-    </div>
+    <section id="showcase" class="showcase">
+      <div class="section-eyebrow reveal">Tour</div>
+      <h2 class="reveal">See it in action.</h2>
+      <p class="section-lead reveal">Every surface — the live dashboard, per-account detail, widgets, settings — is native SwiftUI and built to feel like a first-party macOS app.</p>
+
+      <!-- Live dashboard — full-width hero shot -->
+      <div class="showcase-hero reveal">
+        <div class="showcase-kicker">Live Dashboard</div>
+        <h3>Every account, one glance.</h3>
+        <p>Your whole AI footprint on one page — Claude, ChatGPT, Codex, Cursor, Gemini — colored by category, sorted by urgency. Click any account to drill in.</p>
+        <div class="showcase-media wide">
+          <img src="screenshots/live-dashboard.png" alt="AI Stats live dashboard" />
+        </div>
+      </div>
+
+      <!-- Per-account detail — 2x2 mosaic -->
+      <div class="showcase-block reveal">
+        <div class="showcase-kicker">Account Detail</div>
+        <h3>Charts, limits, and resets — per provider.</h3>
+        <p>Each account gets a page: Swift Charts history, metric cards with progress rings, and the provider's own rate-limit windows broken out.</p>
+        <div class="showcase-grid">
+          <div class="showcase-media"><img src="screenshots/claude-max-dashboard.png" alt="Claude account detail" /></div>
+          <div class="showcase-media"><img src="screenshots/cursor-dashboard.png" alt="Cursor account detail" /></div>
+          <div class="showcase-media"><img src="screenshots/development-dashboard.png" alt="Codex / Development account detail" /></div>
+          <div class="showcase-media"><img src="screenshots/gemini-dashboard.png" alt="Gemini account detail" /></div>
+        </div>
+      </div>
+
+      <!-- Spending — alternating row -->
+      <div class="showcase-row reveal reverse">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Spending</div>
+          <h3>Know what each plan costs you.</h3>
+          <p>Tag monthly prices per account, group by category, see a month-over-month trend line so there are no billing surprises.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/spending-dashboard.png" alt="Spending dashboard" />
+        </div>
+      </div>
+
+      <!-- Widgets trio -->
+      <div class="showcase-block reveal">
+        <div class="showcase-kicker">Widgets</div>
+        <h3>Small, medium, large — all native WidgetKit.</h3>
+        <p>Pick one account to hero or rotate through all of them. Lands on your desktop, Notification Center, and Stage Manager side-panel.</p>
+        <div class="widget-trio">
+          <img class="widget small"  src="screenshots/small-widget.png"  alt="Small widget" />
+          <img class="widget medium" src="screenshots/medium-widget.png" alt="Medium widget" />
+          <img class="widget large"  src="screenshots/large-widget.png"  alt="Large widget" />
+        </div>
+      </div>
+
+      <!-- Menu bar settings -->
+      <div class="showcase-row reveal">
+        <div class="showcase-text">
+          <div class="showcase-kicker">Menu bar</div>
+          <h3>Tuned to the last pixel.</h3>
+          <p>Pick which accounts and which metrics show in the menu bar, configure colors, compact mode, reset cadence — all without leaving the app.</p>
+        </div>
+        <div class="showcase-media">
+          <img src="screenshots/menubar-settings.png" alt="Menu bar settings" />
+        </div>
+      </div>
+    </section>
 
     <section id="features" class="reveal">
       <div class="section-eyebrow">Features</div>
@@ -113,56 +174,6 @@
           </span>
           <h3>100% on-device</h3>
           <p>No backend, no analytics, no telemetry. Your credentials live in the macOS Keychain — never ours.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="showcase" class="showcase">
-      <div class="section-eyebrow reveal">Tour</div>
-      <h2 class="reveal">See it in action.</h2>
-      <p class="section-lead reveal">Every surface — menu bar, widgets, dashboard, settings — is native SwiftUI and built to feel like a first-party macOS app.</p>
-
-      <div class="showcase-row reveal reverse">
-        <div class="showcase-text">
-          <div class="showcase-kicker">Dashboard</div>
-          <h3>Deep-dive usage history.</h3>
-          <p>Swift Charts powered line charts per account, range picker from 1 hour to 30 days, and a sidebar that groups accounts into the categories you set.</p>
-        </div>
-        <div class="showcase-media">
-          <img src="screenshots/dashboard-detail.png" alt="Dashboard showing usage charts for a single account" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/dashboard-detail.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-      <div class="showcase-row reveal">
-        <div class="showcase-text">
-          <div class="showcase-kicker">Widgets</div>
-          <h3>Desktop &amp; Notification Center.</h3>
-          <p>Small, medium, and large WidgetKit widgets. Pick an account to hero or let it rotate through all of them.</p>
-        </div>
-        <div class="showcase-media">
-          <img src="screenshots/widgets.png" alt="macOS widgets displaying AI Stats usage" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/widgets.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-      <div class="showcase-row reveal reverse">
-        <div class="showcase-text">
-          <div class="showcase-kicker">Add account</div>
-          <h3>Sign in once, stay signed in.</h3>
-          <p>Embedded WebView login for Claude, ChatGPT, Codex, Cursor. API key entry for Anthropic, OpenAI, Gemini. Your credentials never leave the Mac.</p>
-        </div>
-        <div class="showcase-media">
-          <img src="screenshots/add-account.png" alt="Add account wizard" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/add-account.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-      <div class="showcase-row reveal">
-        <div class="showcase-text">
-          <div class="showcase-kicker">Settings</div>
-          <h3>Tuned to the last pixel.</h3>
-          <p>Notification thresholds, appearance, categories, menu bar style — all themed in the same glossy purple language as the rest of the app.</p>
-        </div>
-        <div class="showcase-media">
-          <img src="screenshots/settings.png" alt="Settings window" onerror="this.outerHTML='&lt;div class=&quot;media-placeholder&quot;&gt;screenshots/settings.png&lt;/div&gt;'" />
         </div>
       </div>
     </section>
